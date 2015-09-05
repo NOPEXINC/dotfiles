@@ -125,7 +125,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 export RBENV_ROOT="${HOME}/.rbenv"
-if [ -d "${RBENV_ROOT}" ]; then
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-fi
+ if [ -d "${RBENV_ROOT}" ]; then
+   export PATH="${RBENV_ROOT}/bin:${PATH}"
+   eval "$(rbenv init -)"
+ fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export GOPATH=/home/mtabe/go
+export PATH=/usr/local/heroku/bin:/home/mtabe/.rbenv/shims:/home/mtabe/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/mtabe/go/bin:/usr/local/go/bin

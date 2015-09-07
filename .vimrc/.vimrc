@@ -15,6 +15,8 @@ set number
 set numberwidth=5
 set incsearch
 set ignorecase
+set ttyfast
+set lazyredraw "Makes scrolling faster
 
 filetyp plugin indent on
 set tabstop=2

@@ -27,12 +27,20 @@ set showmatch
 set hlsearch
 set smartindent
 
+" The ' key just takes back to the mark's line, the `(backtick)
+" key takes you the exact position of the mark and i rarely
+" use the '(signle quote) so i remaped the backtick(`) to the 
+" signle quote key
+nnoremap ' `
+nnoremap ` '
+
 "Highlight current line
 set cursorline
 set cmdheight=2
 
 syntax enable
-:set t_Co=256
+set t_Co=256
+set term=screen-256color
 set background=dark
 colorscheme solarized
 "colorscheme monokai
@@ -57,7 +65,7 @@ imap <c-l> <space>=><space>
 
 "Saves time; maps the spacebar to colon
 nmap <space> :
- 
+
 "Fuzzy search files with ctrl.p plugin
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " check it here https://github.com/kien/ctrlp.vim
@@ -69,7 +77,12 @@ set autoindent
 set smartindent
 
 " Word wrapping that doesn't do a word in half
-set wrap linebreak nolist
+set wrap
+set linebreak 
+set nolist
+
+"set list
+"set listchars=tab:▸\ ,eol:¬,nbsp:⋅,trail:•
 
 let g:gitgutter_highlight_lines = 1
 
@@ -126,3 +139,49 @@ function! RenameFile()
   endif
 endfunction
 map <c-r> :call RenameFile()<cr>
+
+
+" Statusline {{{
+hi User1 ctermbg=white    ctermfg=black   guibg=#89A1A1 guifg=#002B36
+hi User2 ctermbg=red      ctermfg=white   guibg=#aa0000 guifg=#89a1a1
+
+function! GetCWD()
+  return expand(":pwd")
+endfunction
+
+function! IsHelp()
+  return &buftype=='help'?' (help) ':''
+endfunction
+
+function! GetName()
+  return expand("%:t")==''?'<none>':expand("%:t")
+endfunction
+
+set statusline=%1*[%{GetName()}]\ 
+set statusline+=%<pwd:%{getcwd()}\ 
+set statusline+=%2*%{&modified?'\[+]':''}%*
+set statusline+=%{IsHelp()}
+set statusline+=%{&readonly?'\ (ro)\ ':''}
+set statusline+=[
+set statusline+=%{strlen(&fenc)?&fenc:'none'}\|
+set statusline+=%{&ff}\|
+set statusline+=%{strlen(&ft)?&ft:'<none>'}
+set statusline+=]\ 
+set statusline+=%=
+set statusline+=c%c
+set statusline+=,l%l
+set statusline+=/%L\
+
+"Make directory if it doesn't exist yet
+function s:MkNonExDir(file, buf)
+  if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+    let dir=fnamemodify(a:file, ':h')
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+    endif
+  endif
+endfunction
+augroup BWCCreateDir
+  autocmd!
+  autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END

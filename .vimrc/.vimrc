@@ -1,8 +1,11 @@
+"
+" -----------------------------------------------------------
 " My .vimrc File
 " Maintained by: Zachariah Ngonyani
 " zech@watabelabs.com
 " @zechtz
 " http://watabelabs.com
+"------------------------------------------------------------
 "
 let mapleader = ","
 let maplocalleader = ","
@@ -51,6 +54,15 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=1
+
+" Set no max file limit
+let g:ctrlp_max_files = 0
+" Search from current directory instead of project root
+let g:ctrlp_working_path_mode = 0
+
+" Ignore these directories
+set wildignore+=*/.sass-cache/**
+set wildignore+=*/vendor/**
 
 " Indents html on save and takes you to the top of the page
 " autocmd BufRead,BufWritePre *.html normal gg=G

@@ -96,9 +96,6 @@ set wrap
 set linebreak 
 set nolist
 
-"set list
-"set listchars=tab:▸\ ,eol:¬,nbsp:⋅,trail:•
-
 let g:gitgutter_highlight_lines = 1
 
 " Allow copying and pasting from clipboard
@@ -156,10 +153,6 @@ endfunction
 map <c-r> :call RenameFile()<cr>
 
 
-" Statusline {{{
-hi User1 ctermbg=white    ctermfg=black   guibg=#89A1A1 guifg=#002B36
-hi User2 ctermbg=red      ctermfg=white   guibg=#aa0000 guifg=#89a1a1
-
 function! GetCWD()
   return expand(":pwd")
 endfunction
@@ -201,23 +194,25 @@ augroup BWCCreateDir
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='powerlineish'
+let g:airline_theme="papercolor"
+"let g:airline_theme="wombat"
+"let g:airline_theme='kalisi'
+"let g:airline_theme='laederon'
+
+" Ruby
+" Use v or # to get a variable interpolation (inside of a string)}
+" ysiw# Wrap the token under the cursor in #{}
+" v...s# Wrap the selection in #{}
+let g:surround_113 = "#{\r}" " v
+let g:surround_35 = "#{\r}" " #
+
+" Select text in an ERb file with visual mode and then press s- or s=
+" Or yss- to do entire line.
+let g:surround_45 = "<% \r %>" " -
+let g:surround_61 = "<%= \r %>" " =
+
+" RubyAndRails:
+let g:ruby_fold = 1 " Turn on folding in ruby files
+let ruby_operators = 1 " Highlight ruby operators
+let g:rails_statusline=0 " Turn off rails bits of statusbar

@@ -181,7 +181,7 @@ set statusline+=,l%l
 set statusline+=/%L\
 
 "Make directory if it doesn't exist yet
-function s:MkNonExDir(file, buf)
+function! s:MkNonExDir(file, buf)
   if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
     let dir=fnamemodify(a:file, ':h')
     if !isdirectory(dir)
@@ -195,12 +195,12 @@ augroup BWCCreateDir
 augroup END
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme="papercolor"
+"let g:airline_theme="dark"
 "let g:airline_theme="wombat"
-"let g:airline_theme='kalisi'
-"let g:airline_theme='laederon'
+"let g:airline_theme='base16'
+let g:airline_theme='laederon'
 
-" Ruby
+" Ruby:
 " Use v or # to get a variable interpolation (inside of a string)}
 " ysiw# Wrap the token under the cursor in #{}
 " v...s# Wrap the selection in #{}
@@ -216,3 +216,4 @@ let g:surround_61 = "<%= \r %>" " =
 let g:ruby_fold = 1 " Turn on folding in ruby files
 let ruby_operators = 1 " Highlight ruby operators
 let g:rails_statusline=0 " Turn off rails bits of statusbar
+

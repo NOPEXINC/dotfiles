@@ -24,7 +24,6 @@ set ignorecase
 set ttyfast
 set lazyredraw "Makes scrolling faster
 
-
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)

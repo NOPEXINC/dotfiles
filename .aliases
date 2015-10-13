@@ -14,6 +14,9 @@ alias p="cd ~/projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit -m"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -140,3 +143,25 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# what using the cp command, please show progress in human readable format and maintain
+# permissions -a = premissions, -h in human readable
+alias cp="rsync -ah --progress"
+
+# sometimes the habits from using windows just wont leave so make cls alias to clear
+alias cls='clear'
+alias CLS='clear'
+alias CLEAR='clear'
+alias CD='cd'
+
+# if i just type up take me back one level up
+alias up='echo "Moving back one directory" && cd ..'
+
+# if i type home just bring me back to home/root folder
+alias home='echo "Welcome, you are in your home folder now" && cd ~'
+

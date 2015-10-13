@@ -30,16 +30,14 @@ set nocompatible
 set clipboard=unnamed
 " Enhance command-line completion
 set wildmenu
-
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
-
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+  set undodir=~/.vim/undo
 endif
 
 " Don’t create backups when editing files in certain directories
@@ -48,20 +46,26 @@ set backupskip=/tmp/*,/private/tmp/*
 " Highlight current line
 set cursorline
 
-
 " Automatic commands
 if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+  " Enable file type detection
+  filetype on
+  " Treat .json files as .js
+  autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+  " Treat .md files as Markdown
+  autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
+"If no file is specified, just open nerdtree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-filetyp plugin indent on
-set tabstop=2
+"Just press ctrl + n to open nerdtree
+nmap as :NERDTreeToggle<CR>
+
+filetype plugin indent on
+"set tabstop=2
+set ts=2 sts=2 noet
 set shiftwidth=2
 set expandtab
 set autoindent
@@ -171,7 +175,7 @@ function! InsertTabWrapper()
   endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
+"inoremap <s-tab> <c-n>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   RENAME CURRENT FILE
@@ -186,8 +190,7 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-map <c-r> :call RenameFile()<cr>
-
+map <tab>r  :call RenameFile()<cr>
 
 function! GetCWD()
   return expand(":pwd")
@@ -235,6 +238,7 @@ let g:airline_powerline_fonts = 1
 "let g:airline_theme="wombat"
 "let g:airline_theme='base16'
 let g:airline_theme='laederon'
+"let g:airline_theme='kalisi'
 
 " Ruby:
 " Use v or # to get a variable interpolation (inside of a string)}
@@ -253,3 +257,5 @@ let g:ruby_fold = 1 " Turn on folding in ruby files
 let ruby_operators = 1 " Highlight ruby operators
 let g:rails_statusline=0 " Turn off rails bits of statusbar
 
+" Make ctrl + p load 100% times faster, just tell it to ignore git files
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']

@@ -61,7 +61,12 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "Just press ctrl + n to open nerdtree
-nmap as :NERDTreeToggle<CR>
+nmap <Leader>s :NERDTreeToggle<CR>
+
+"Just press ,w to undo the last word in insert mode
+imap <Leader>h <C-h> "Undo last character
+imap <Leader>w <C-w> "Undo last word
+imap <Leader>u <C-u> "Undo last line
 
 filetype plugin indent on
 "set tabstop=2
@@ -84,10 +89,13 @@ nnoremap ` '
 set cursorline
 set cmdheight=2
 
+"turn on spell checking
+setlocal spell spelllang=en_us
+
 syntax enable
 set t_Co=256
 set term=screen-256color
-set background=dark
+set background=dark 
 colorscheme solarized
 "colorscheme monokai
 "colorscheme gotham256
@@ -127,6 +135,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 "Never have to lift your fingers just to escape insert mode ':'"
 imap jk <Esc>
+vmap jk <Esc>
 
 set autoindent
 set smartindent
@@ -259,3 +268,5 @@ let g:rails_statusline=0 " Turn off rails bits of statusbar
 
 " Make ctrl + p load 100% times faster, just tell it to ignore git files
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+"set rtp+=~/.fzf

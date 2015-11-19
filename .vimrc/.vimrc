@@ -147,7 +147,8 @@ set nolist
 
 let g:gitgutter_highlight_lines = 1
 
-" Allow copying and pasting from clipboard
+" Allow copying and pasting from clipboard make sure vim comes bundled
+" with xterm_clipboard vim --version should show +xterm_clipboard run sudo apt-get install vim-nox
 set clipboard=unnamedplus
 
 " sometimes you open a readonly file in vim but you forget to run vim with sudo 
@@ -244,10 +245,12 @@ augroup END
 
 let g:airline_powerline_fonts = 1
 "let g:airline_theme="dark"
-"let g:airline_theme="wombat"
+let g:airline_theme="wombat"
 "let g:airline_theme='base16'
-let g:airline_theme='laederon'
+"let g:airline_theme='laederon'
 "let g:airline_theme='kalisi'
+"make sure the airline status shows even on single files
+set laststatus=2
 
 " Ruby:
 " Use v or # to get a variable interpolation (inside of a string)}
@@ -270,3 +273,4 @@ let g:rails_statusline=0 " Turn off rails bits of statusbar
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 "set rtp+=~/.fzf
+"https://github.com/mathiasbynens/dotfiles

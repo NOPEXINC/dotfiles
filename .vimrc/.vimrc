@@ -13,7 +13,8 @@ let maplocalleader = ","
 execute pathogen#infect()
 
 "set monaco as the font
-set guifont=Monaco\ 12
+set guifont=Monaco\ 14
+set runtimepath^=~/.vim/bundle/node
 
 syntax on
 
@@ -60,8 +61,12 @@ endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"Just press ctrl + n to open nerdtree
+"Just press , + s to open nerdtree
 nmap <Leader>s :NERDTreeToggle<CR>
+
+"Just press , + l to open nerdtree
+nmap <Leader>l :GitGutterLineHighlightsToggle<CR>
+let g:gitgutter_max_signs = 2048
 
 "Just press ,w to undo the last word in insert mode
 imap <Leader>h <C-h> "Undo last character
@@ -95,10 +100,11 @@ setlocal spell spelllang=en_us
 syntax enable
 set t_Co=256
 set term=screen-256color
-set background=dark 
+set background=dark
 colorscheme solarized
-"colorscheme monokai
+"colorscheme molokai
 "colorscheme gotham256
+"let g:molokai_original = 1
 
 set foldmethod=syntax
 set foldmethod=indent
@@ -120,8 +126,8 @@ set wildignore+=*/vendor/**
 
 " map ctrl + c keys to autocomplete using emmet
 
-imap <c-c> <c-y>,
-vmap <c-w> <c-y>,
+imap <Leader>c <c-y>,
+vmap <Leader>w <c-y>,
 
 "Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
@@ -200,7 +206,7 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-map <tab>r  :call RenameFile()<cr>
+map <Leader>r  :call RenameFile()<cr>
 
 function! GetCWD()
   return expand(":pwd")
@@ -245,9 +251,9 @@ augroup END
 
 let g:airline_powerline_fonts = 1
 "let g:airline_theme="dark"
-let g:airline_theme="wombat"
+"let g:airline_theme="wombat"
 "let g:airline_theme='base16'
-"let g:airline_theme='laederon'
+let g:airline_theme='laederon'
 "let g:airline_theme='kalisi'
 "make sure the airline status shows even on single files
 set laststatus=2

@@ -1,5 +1,3 @@
-"
-" -----------------------------------------------------------
 " My .vimrc File
 " Maintained by: Zachariah Ngonyani
 " zech@watabelabs.com
@@ -64,6 +62,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "Just press , + s to open nerdtree
 nmap <Leader>s :NERDTreeToggle<CR>
 
+"Just press , + ggd to disable gitgutter and gge to enable
+nmap <Leader>gd :GitGutterDisable<CR>
+nmap <Leader>ge :GitGutterEnable<CR>
+
 "Just press , + l to open nerdtree
 nmap <Leader>l :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_max_signs = 2048
@@ -72,6 +74,12 @@ let g:gitgutter_max_signs = 2048
 imap <Leader>h <C-h> "Undo last character
 imap <Leader>w <C-w> "Undo last word
 imap <Leader>u <C-u> "Undo last line
+
+" Navigation through splits
+nmap <Leader>hh <C-w>h
+nmap <Leader>ll <C-w>l
+nmap <Leader>jj <C-w>j
+nmap <Leader>kk <C-w>k
 
 filetype plugin indent on
 "set tabstop=2
@@ -116,6 +124,9 @@ set foldlevel=1
 let g:ctrlp_max_files = 0
 " Search from current directory instead of project root
 let g:ctrlp_working_path_mode = 0
+
+"Just ,p instead of ctrl + p
+nmap <Leader>p <c-p> 
 
 " Ignore these directories
 set wildignore+=*/.sass-cache/**
@@ -277,6 +288,8 @@ let g:rails_statusline=0 " Turn off rails bits of statusbar
 
 " Make ctrl + p load 100% times faster, just tell it to ignore git files
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+"map <leader>f :ctrlp<cr>
 
 "set rtp+=~/.fzf
 "https://github.com/mathiasbynens/dotfiles

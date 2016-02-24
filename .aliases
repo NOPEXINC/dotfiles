@@ -162,6 +162,12 @@ alias CD='cd'
 # if i just type up take me back one level up
 alias up='echo "Moving back one directory" && cd ..'
 
-# if i type home just bring me back to home/root folder
+# if i type home just bring me back to root folder
 alias home='echo "Welcome, you are in your home folder now" && cd ~'
+alias gohome='cd ~/.gosrc'
+alias gosource='cd ~/.gosrc/src'
+
+# if i type work just bring me to home/zach/work folder
+alias work='cd ~/work'
+alias sites='cd ~/sites'
 

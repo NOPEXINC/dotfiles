@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/mtabe/sites/uliza/assets/js'
-let g:netrw_dirhist_2='/home/mtabe/sites/zech-blog/_includes'
-let g:netrw_dirhist_3='/home/mtabe/work/zechtz.github.io/_posts'
-let g:netrw_dirhist_4='/home/mtabe/work/zechtz.github.io/_about'
-let g:netrw_dirhist_5='/home/mtabe/sites/lawyersnorthafrica'
-let g:netrw_dirhist_6='scp://deploy@lawyerskenya.co.ke/apps/lawyerskenya_production/current/config/initializers/'
-let g:netrw_dirhist_7='/home/mtabe/sites/lawyersarabia/app/views/admin/listings'
-let g:netrw_dirhist_8='/home/mtabe/sites/uliza/assets'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/zach/sites/uliza/api/controllers'

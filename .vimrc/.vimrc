@@ -1,18 +1,16 @@
-"------------------------------------------------------------"
+"------------------------------------------------------------
 " My .vimrc File
 " Maintained by: Zachariah Ngonyani
 " zech@watabelabs.com
 " @zechtz
 " http://watabelabs.com
-"------------------------------------------------------------"
+"------------------------------------------------------------
 
-"leader key should be mapped to comma(,) its much easier that way
-"you stay on home row to access it
 let mapleader = ","
 let maplocalleader = ","
 
-" load vim tabular
-let g:tabular_loaded = 1
+"allow for project specific vimrc 
+set exrc  
 
 execute pathogen#infect()
 
@@ -40,8 +38,8 @@ set clipboard=unnamed
 " Enhance command-line completion
 set wildmenu
 " Don’t add empty newlines at the end of files
-set binary
-set noeol
+"set binary
+"set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -61,9 +59,10 @@ if has("autocmd")
   filetype on
   " Treat .json files as .js
   autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-  " Treat .md files as Markdown
-  autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Treat .md files as Markdown
+autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 
 "If no file is specified, just open nerdtree
 autocmd StdinReadPre * let s:std_in=1
@@ -71,6 +70,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "Just press , + s to open nerdtree
 nmap <Leader>s :NERDTreeToggle<CR>
+nmap <Leader>gv :Gvdiff<CR>
 
 "Just press , + ggd to disable gitgutter and gge to enable
 nmap <Leader>gd :GitGutterDisable<CR>
@@ -124,8 +124,9 @@ setlocal spell spelllang=en_us
 syntax enable
 set t_Co=256
 set term=screen-256color
-set background=dark
-colorscheme solarized
+set background=dark  
+colorscheme molokai 
+"colorscheme twilight256
 
 set foldmethod=syntax
 set foldmethod=indent
@@ -176,7 +177,8 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 "Never have to lift your fingers just to escape insert mode ':'"
 "-----------------------------------------------------------------"
 imap jk <Esc>
-vmap jk <Esc>
+imap jj <Esc>
+imap kk <Esc>
 
 set autoindent
 set smartindent
@@ -304,6 +306,7 @@ let g:airline_powerline_fonts = 1
 "let g:airline_theme="wombat"
 "let g:airline_theme='base16'
 let g:airline_theme='laederon'
+"let g:airline_theme='onedark'
 "let g:airline_theme='kalisi'
 "make sure the airline status shows even on single files
 set laststatus=2
@@ -380,5 +383,42 @@ au FileType go nmap <leader>c  <Plug>(go-coverage)
 au FileType go nmap <Leader>d <Plug>(go-doc)
 au FileType go nmap <Leader>f :GoImports<CR>
 
+" Disable folding
+let g:vim_markdown_folding_disabled = 1
+
 "set rtp+=~/.fzf
 "https://github.com/mathiasbynens/dotfiles
+"
+" execute a command and show it's output in a split window
+command! -nargs=* -complete=shellcmd Rsplit execute "new | r! <args>"
+
+" execute a command and show it's output in a new tab
+" command! -nargs=* -complete=shellcmd Rtab execute "tabnew | r! <args>"
+
+
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+
+" vim-rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>x :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+"typescript 
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+set textwidth=120       " break lines when line length increases
+"python files 
+au FileType py set autoindent
+au FileType py set smartindent
+" au FileType py set textwidth=79 " PEP-8 Friendly
+
+" NO ARROW KEYS COME ON
+map <Left>  :echo "no!"<cr>
+map <Right> :echo "no!"<cr>
+map <Up>    :echo "no!"<cr>
+map <Down>  :echo "no!"<cr>
+
+
+" Ctags Mappings
+nmap <Leader>f :tag<space>

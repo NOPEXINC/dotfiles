@@ -5,7 +5,6 @@
 " @zechtz
 " http://watabelabs.com
 "------------------------------------------------------------
-
 let mapleader = ","
 let maplocalleader = ","
 
@@ -15,19 +14,27 @@ set exrc
 execute pathogen#infect()
 
 "set monaco as the font
-set guifont=Monaco\ 14
+set guifont=FiraSans\ 14
 set runtimepath^=~/.vim/bundle/node
 
 "set rust auto format
 let g:rustfmt_autosave = 1
 
+" automatically save the edited but not saved file
+" when switching buffers 
+set autowriteall  
+
 syntax on
 
 set number
+"show current linenumber in the gutter
+set relativenumber 
+
 set numberwidth=5
 set incsearch
 set ignorecase
 set ttyfast
+
 "Makes scrolling faster
 set lazyredraw 
 
@@ -119,14 +126,14 @@ set cursorline
 set cmdheight=2
 
 "turn on spell checking
-setlocal spell spelllang=en_us
+" setlocal spell spelllang=en_us
 
 syntax enable
 set t_Co=256
 set term=screen-256color
 set background=dark  
-colorscheme molokai 
-"colorscheme twilight256
+colorscheme atom-dark-256 
+let g:onedark_termcolors=256
 
 set foldmethod=syntax
 set foldmethod=indent
@@ -166,7 +173,8 @@ imap <c-l> <space>=><space>
 "Saves time; maps the spacebar to colon
 "-----------------------------------------------------------------"
 nmap <space> :
-
+nmap <Leader>tb <Esc>:Tabularize<space>/ 
+vmap <Leader>tb <Esc>:Tabularize<space>/ 
 "-----------------------------------------------------------------"
 "Fuzzy search files with ctrl.p plugin
 "-----------------------------------------------------------------"
@@ -213,12 +221,10 @@ cmap w!! w !sudo tee % >/dev/null
 " show matching brackets
 "-----------------------------------------------------------------"
 set showmatch 
-
 "-----------------------------------------------------------------"
 " print empty <a> tag
 "-----------------------------------------------------------------"
 map! ;h <a href=""></a><ESC>5hi
-
 "-----------------------------------------------------------------"
 " Set a different background color on gutter
 "-----------------------------------------------------------------"
@@ -302,12 +308,8 @@ augroup BWCCreateDir
 augroup END
 
 let g:airline_powerline_fonts = 1
-"let g:airline_theme="dark"
-"let g:airline_theme="wombat"
-"let g:airline_theme='base16'
-let g:airline_theme='laederon'
-"let g:airline_theme='onedark'
-"let g:airline_theme='kalisi'
+let g:airline_theme='onedark'
+
 "make sure the airline status shows even on single files
 set laststatus=2
 
@@ -407,18 +409,19 @@ map <Leader>a :call RunAllSpecs()<CR>
 "typescript 
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
-set textwidth=120       " break lines when line length increases
-"python files 
+
+set textwidth=120       
+
+" break lines when line length increases python files 
 au FileType py set autoindent
 au FileType py set smartindent
 " au FileType py set textwidth=79 " PEP-8 Friendly
 
-" NO ARROW KEYS COME ON
+" No ARROW KEYS COME ON
 map <Left>  :echo "no!"<cr>
 map <Right> :echo "no!"<cr>
 map <Up>    :echo "no!"<cr>
 map <Down>  :echo "no!"<cr>
-
 
 " Ctags Mappings
 nmap <Leader>f :tag<space>

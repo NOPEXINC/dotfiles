@@ -68,12 +68,52 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSTOM AUTOCMDS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup vimrcEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType python set sw=4 sts=4 et
+
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
+
+  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+
+  " Indent p tags
+  " autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+
+  " Don't syntax highlight markdown because it's often wrong
+  autocmd! FileType mkd setlocal syn=off
+
+  " Leave the return key alone when in command line windows, since it's used
+  " to run commands there.
+  autocmd! CmdwinEnter * :unmap <cr>
+  autocmd! CmdwinLeave * :call MapCR()
+
+  " *.md is markdown
+  autocmd! BufNewFile,BufRead *.md setlocal ft=
+
+  " indent slim two spaces, not four
+  autocmd! FileType *.slim set sw=2 sts=2 et
+augroup END
+
 " Treat .md files as Markdown
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 
 "If no file is specified, just open nerdtree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "Just press , + s to open nerdtree
 nmap <Leader>s :NERDTreeToggle<CR>
@@ -132,6 +172,7 @@ syntax enable
 set t_Co=256
 set term=screen-256color
 set background=dark  
+"colorscheme atom-dark-256 
 colorscheme atom-dark-256 
 let g:onedark_termcolors=256
 
@@ -157,7 +198,6 @@ set wildignore+=*/vendor/**
 
 " Indents html on save and takes you to the top of the page
 " autocmd BufRead,BufWritePre *.html normal gg=G
-
 "-----------------------------------------------------------------"
 " map ctrl + c keys to autocomplete using emmet
 "-----------------------------------------------------------------"
@@ -180,7 +220,6 @@ vmap <Leader>tb <Esc>:Tabularize<space>/
 "-----------------------------------------------------------------"
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " check it here https://github.com/kien/ctrlp.vim
-
 "-----------------------------------------------------------------"
 "Never have to lift your fingers just to escape insert mode ':'"
 "-----------------------------------------------------------------"
@@ -425,3 +464,8 @@ map <Down>  :echo "no!"<cr>
 
 " Ctags Mappings
 nmap <Leader>f :tag<space>
+
+" set comments to be in italics
+set t_ZH=[3m
+set t_ZR=[23m
+highlight Comment cterm=italic 

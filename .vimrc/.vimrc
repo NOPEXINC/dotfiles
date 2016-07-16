@@ -24,9 +24,12 @@ let g:rustfmt_autosave = 1
 " when switching buffers 
 set autowriteall  
 
-syntax on
+" must be there for syntax highlighting 
+syntax on 
 
+" show line numbers in gutter 
 set number
+
 "show current linenumber in the gutter
 set relativenumber 
 
@@ -40,10 +43,13 @@ set lazyredraw
 
 " Make Vim more useful
 set nocompatible
+
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
+
 " Enhance command-line completion
 set wildmenu
+
 " Don’t add empty newlines at the end of files
 "set binary
 "set noeol
@@ -85,7 +91,11 @@ augroup vimrcEx
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
+  autocmd! BufRead,BufNewFile *.sass setfiletype css  
+  autocmd! BufRead,BufNewFile *.scss setfiletype css  
+  autocmd! BufRead,BufNewFile *.cap setfiletype ruby  
+  autocmd! BufRead,BufNewFile *.conf setfiletype conf 
+  autocmd! BufRead,BufNewFile *.ejs setfiletype html
 
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -131,10 +141,13 @@ let g:gitgutter_max_signs = 2048
 "Just press ,w to undo the last word in insert mode
 "Undo last character
 imap <Leader>h <C-h>
+
 "Undo last word
 imap <Leader>w <C-w>
+
 "Undo last line
 imap <Leader>u <C-u> 
+
 "Undo everything untill last undo
 imap <Leader>ou <C-o>u 
 
@@ -144,7 +157,14 @@ nmap <Leader>ll <C-w>l
 nmap <Leader>jj <C-w>j
 nmap <Leader>kk <C-w>k
 
+" navigating through lines should be easy, don't have to gj & gk anymore
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
 filetype plugin indent on
+
 "set tabstop=2
 set ts=2 sts=2 noet
 set shiftwidth=2
@@ -172,8 +192,9 @@ syntax enable
 set t_Co=256
 set term=screen-256color
 set background=dark  
+
 "colorscheme atom-dark-256 
-colorscheme atom-dark-256 
+colorscheme onedark
 let g:onedark_termcolors=256
 
 set foldmethod=syntax
@@ -213,8 +234,19 @@ imap <c-l> <space>=><space>
 "Saves time; maps the spacebar to colon
 "-----------------------------------------------------------------"
 nmap <space> :
-nmap <Leader>tb <Esc>:Tabularize<space>/ 
-vmap <Leader>tb <Esc>:Tabularize<space>/ 
+nmap <Leader>bu <Esc>:Tabularize/ 
+vmap <Leader>bu <Esc>:Tabularize/ 
+imap <Leader>b <Esc>:Buffers<CR> 
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+nmap <leader>bf :bfirst<CR>
+nmap <leader>buf :Buffers<CR>
+
 "-----------------------------------------------------------------"
 "Fuzzy search files with ctrl.p plugin
 "-----------------------------------------------------------------"
@@ -229,6 +261,10 @@ imap kk <Esc>
 
 set autoindent
 set smartindent
+
+"let g:indentLine_char = '┊'
+"let g:indentLine_char = '.'
+let g:indentLine_color_term = 239
 
 "-----------------------------------------------------------------"
 " Word wrapping that doesn't do a word in half
@@ -352,6 +388,12 @@ let g:airline_theme='onedark'
 "make sure the airline status shows even on single files
 set laststatus=2
 
+" Enable the list of buffers
+"let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+"let g:airline#extensions#tabline#fnamemod = ':t'
+
 "-----------------------------------------------------------------"
 " Use v or # to get a variable interpolation (inside of a string)}
 " ysiw# Wrap the token under the cursor in #{} in Ruby
@@ -380,6 +422,8 @@ let g:rails_statusline=0
 " Make ctrl + p load 100% times faster, just tell it to ignore git files
 "-----------------------------------------------------------------"
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 "-----------------------------------------------------------------"
 "Exchange settings
@@ -436,13 +480,15 @@ command! -nargs=* -complete=shellcmd Rsplit execute "new | r! <args>"
 " execute a command and show it's output in a new tab
 " command! -nargs=* -complete=shellcmd Rtab execute "tabnew | r! <args>"
 
-
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+
+"do not load youcompleteme 
+"let g:loaded_youcompleteme = 1
 
 " vim-rspec mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>x :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
+map <Leader>ls :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 "typescript 
@@ -463,9 +509,12 @@ map <Up>    :echo "no!"<cr>
 map <Down>  :echo "no!"<cr>
 
 " Ctags Mappings
-nmap <Leader>f :tag<space>
+nmap <Leader>ff :tag<space>
 
 " set comments to be in italics
 set t_ZH=[3m
 set t_ZR=[23m
 highlight Comment cterm=italic 
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'javascript': { 'left': '/* ','right': ' */' } }

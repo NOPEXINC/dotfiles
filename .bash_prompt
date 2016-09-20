@@ -29,6 +29,8 @@ prompt_git() {
       # Check if nothing to commit, clean branch then green tick
       if ! [ -n "$(git status --porcelain)" ]; then 
 				s+="${green}[✓]";
+
+
       fi; 
 
 			# Check for unstaged changes aka changes not added to be comitted
@@ -38,7 +40,7 @@ prompt_git() {
 
 			# Check for untracked files.
 			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				s+="${red}[✗]";
+				s+="${red}[]";
 			fi;
 
 			# Check for stashed files.
@@ -115,7 +117,7 @@ PS1+="\[${userStyle}\]\u"; # username
 #PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${cyan}\] in ";
 PS1+="\[${green}\]\w"; # working directory
-PS1+="\$(prompt_git \"${cyan} on ${violet}\")"; # Git repository details
+PS1+="\$(prompt_git \"${cyan} on branch  ${violet}\")"; # Git repository details
 PS1+="\n";
 PS1+="\[${cyan}\]\$ \[${reset}\]"; # `$` (and reset color)
 export PS1;

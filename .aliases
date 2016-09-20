@@ -17,6 +17,11 @@ alias j="jobs"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit -m"
+alias gpom='git push origin master'
+alias wifi='/etc/NetworkManager/system-connections'
+
+# list open ports 
+alias lsp="sudo lsof -i -n -P | grep LISTEN"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -166,8 +171,19 @@ alias up='echo "Moving back one directory" && cd ..'
 alias home='echo "Welcome, you are in your home folder now" && cd ~'
 alias gohome='cd ~/.gosrc'
 alias gosource='cd ~/.gosrc/src'
+alias gobin='cd ~/.gvm/gos/go1.5/bin'
 
 # if i type work just bring me to home/zach/work folder
 alias work='cd ~/work'
+alias www='cd ~/public_html'
 alias sites='cd ~/sites'
+alias uliza='cd ~/sites/uliza'
+alias python=python3  
 
+alias mediumcli='/usr/lib/node_modules/mediumcli/index.js'
+
+# Always enable colored `grep` output
+# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'

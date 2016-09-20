@@ -15,6 +15,7 @@ execute pathogen#infect()
 
 "set monaco as the font
 set guifont=FiraSans\ 14
+
 set runtimepath^=~/.vim/bundle/node
 
 "set rust auto format
@@ -30,7 +31,7 @@ syntax on
 " show line numbers in gutter 
 set number
 
-"show current linenumber in the gutter
+"show relative linenumber in the gutter
 set relativenumber 
 
 set numberwidth=5
@@ -127,7 +128,12 @@ autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 
 "Just press , + s to open nerdtree
 nmap <Leader>s :NERDTreeToggle<CR>
+
+nmap <Leader><space> :noh<cr>
+
 nmap <Leader>gv :Gvdiff<CR>
+nmap <Leader>g :Goyo 100%+5%x100%+5%<CR>
+nmap <Leader>lm :Limelight<CR>
 
 "Just press , + ggd to disable gitgutter and gge to enable
 nmap <Leader>gd :GitGutterDisable<CR>
@@ -143,7 +149,7 @@ let g:gitgutter_max_signs = 2048
 imap <Leader>h <C-h>
 
 "Undo last word
-imap <Leader>w <C-w>
+imap <Leader>ww <C-w>
 
 "Undo last line
 imap <Leader>u <C-u> 
@@ -183,6 +189,7 @@ nnoremap ` '
 
 "Highlight current line
 set cursorline
+"set nocursorline
 set cmdheight=2
 
 "turn on spell checking
@@ -191,11 +198,16 @@ set cmdheight=2
 syntax enable
 set t_Co=256
 set term=screen-256color
-set background=dark  
 
-"colorscheme atom-dark-256 
-colorscheme onedark
 let g:onedark_termcolors=256
+"colorscheme onedark 
+"colorscheme hybrid_reverse 
+"colorscheme atom-dark-256 
+"colorscheme solarized
+"colorscheme codeschool
+"colorscheme molokai
+colorscheme railscasts 
+set background=dark  
 
 set foldmethod=syntax
 set foldmethod=indent
@@ -211,7 +223,7 @@ let g:ctrlp_working_path_mode = 0
 "Just ,p instead of ctrl + p
 nmap <Leader>p <C-p> 
 "Move back to normal mode from insert mode by typing ,]
-imap <Leader>[ <C-[> 
+imap <Leader>[ <Esc> 
 
 " Ignore these directories
 set wildignore+=*/.sass-cache/**
@@ -234,18 +246,20 @@ imap <c-l> <space>=><space>
 "Saves time; maps the spacebar to colon
 "-----------------------------------------------------------------"
 nmap <space> :
-nmap <Leader>bu <Esc>:Tabularize/ 
-vmap <Leader>bu <Esc>:Tabularize/ 
-imap <Leader>b <Esc>:Buffers<CR> 
+nmap <Leader>bb <Esc>:Tabularize/= <cr>
+nmap <Leader>tb <Esc>:Tabularize/
+nmap <Leader>so ysiw
 
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
+nmap <leader>tn :tabnext<CR>
+nmap <leader>tp :tabprevious<CR>
 
 " Move to the previous buffer
 nmap <leader>h :bprevious<CR>
 
 nmap <leader>bf :bfirst<CR>
-nmap <leader>buf :Buffers<CR>
+nmap <leader>bf :Buffers<CR>
 
 "-----------------------------------------------------------------"
 "Fuzzy search files with ctrl.p plugin
@@ -255,9 +269,9 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 "-----------------------------------------------------------------"
 "Never have to lift your fingers just to escape insert mode ':'"
 "-----------------------------------------------------------------"
-imap jk <Esc>
-imap jj <Esc>
-imap kk <Esc>
+imap jk <Esc><Esc>
+imap jj <Esc><Esc>
+imap kk <Esc><Esc>
 
 set autoindent
 set smartindent
@@ -308,6 +322,18 @@ highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=yellow
 highlight GitGutterDelete ctermfg=red
 highlight GitGutterChangeDelete ctermfg=yellow
+
+"Added this to see if highlight goes 
+"highlight LineNr ctermbg=black 
+" set cursoline bg color to none 
+
+"highlight CursorLine ctermbg=NONE
+highlight CursorLine ctermbg=235 
+"highlight Normal ctermbg=black
+
+" empty lines displayed as ~ should not be highlighted with any color 
+highlight NonText ctermbg=none
+
 "-----------------------------------------------------------------"
 
 "-----------------------------------------------------------------"
@@ -518,3 +544,23 @@ highlight Comment cterm=italic
 
 " Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = { 'javascript': { 'left': '/* ','right': ' */' } }
+
+"for javascript development 
+let g:javascript_plugin_jsdoc = 1
+
+" Ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<Leader>r"
+let g:UltiSnipsJumpForwardTrigger="<Leader>f"
+let g:UltiSnipsJumpBackwardTrigger="<Leader>b"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"-------------------Auto-Commands----------------"
+
+"Automatically source the .vimrc file on save 
+augroup sourcing 
+	autocmd!
+	autocmd BufWritePost .vimrc source % 
+augroup END 

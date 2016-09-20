@@ -49,7 +49,7 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi Search term=reverse cterm=NONE ctermbg=193 ctermfg=16 gui=NONE guibg=#B4EC85 guifg=#000000
     CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=156 gui=bold guibg=bg guifg=#A8FF60
     CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=156 gui=bold guibg=bg guifg=#A8FF60
-    CSAHi LineNr term=underline cterm=NONE ctermbg=235 ctermfg=66 gui=NONE guibg=#232526 guifg=#465457
+    CSAHi LineNr term=underline cterm=NONE ctermbg=234 ctermfg=66 gui=NONE guibg=#232526 guifg=#465457
     CSAHi LightLineRight_insert_0 term=NONE cterm=NONE ctermbg=153 ctermfg=30 gui=NONE guibg=#87dfff guifg=#005f5f
     CSAHi LightLineRight_insert_0_tabsel term=NONE cterm=NONE ctermbg=235 ctermfg=153 gui=NONE guibg=#262626 guifg=#87dfff
     CSAHi LightLineRight_insert_tabsel_0 term=NONE cterm=NONE ctermbg=153 ctermfg=235 gui=NONE guibg=#87dfff guifg=#262626
@@ -369,7 +369,7 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi Search term=reverse cterm=NONE ctermbg=193 ctermfg=16 gui=NONE guibg=#B4EC85 guifg=#000000
     CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=192 gui=bold guibg=bg guifg=#A8FF60
     CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=192 gui=bold guibg=bg guifg=#A8FF60
-    CSAHi LineNr term=underline cterm=NONE ctermbg=235 ctermfg=102 gui=NONE guibg=#232526 guifg=#465457
+    CSAHi LineNr term=underline cterm=NONE ctermbg=234 ctermfg=102 gui=NONE guibg=#232526 guifg=#465457
     CSAHi LightLineRight_insert_0 term=NONE cterm=NONE ctermbg=159 ctermfg=30 gui=NONE guibg=#87dfff guifg=#005f5f
     CSAHi LightLineRight_insert_0_tabsel term=NONE cterm=NONE ctermbg=235 ctermfg=159 gui=NONE guibg=#262626 guifg=#87dfff
     CSAHi LightLineRight_insert_tabsel_0 term=NONE cterm=NONE ctermbg=159 ctermfg=235 gui=NONE guibg=#87dfff guifg=#262626
@@ -689,7 +689,7 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi Search term=reverse cterm=NONE ctermbg=156 ctermfg=16 gui=NONE guibg=#B4EC85 guifg=#000000
     CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=155 gui=bold guibg=bg guifg=#A8FF60
     CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=155 gui=bold guibg=bg guifg=#A8FF60
-    CSAHi LineNr term=underline cterm=NONE ctermbg=235 ctermfg=59 gui=NONE guibg=#232526 guifg=#465457
+    CSAHi LineNr term=underline cterm=NONE ctermbg=234 ctermfg=59 gui=NONE guibg=#232526 guifg=#465457
     CSAHi LightLineRight_insert_0 term=NONE cterm=NONE ctermbg=117 ctermfg=23 gui=NONE guibg=#87dfff guifg=#005f5f
     CSAHi LightLineRight_insert_0_tabsel term=NONE cterm=NONE ctermbg=235 ctermfg=117 gui=NONE guibg=#262626 guifg=#87dfff
     CSAHi LightLineRight_insert_tabsel_0 term=NONE cterm=NONE ctermbg=117 ctermfg=235 gui=NONE guibg=#87dfff guifg=#262626

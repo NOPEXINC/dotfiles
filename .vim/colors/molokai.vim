@@ -137,8 +137,9 @@ end
 if &t_Co > 255
    if s:molokai_original == 1
       hi Normal                   ctermbg=234
-      hi CursorLine               ctermbg=235   cterm=none
+      hi CursorLine               ctermbg=none   cterm=none
       hi CursorLineNr ctermfg=208               cterm=none
+      hi CursorLineNr ctermbg=black             cterm=none
    else
       hi Normal       ctermfg=252 ctermbg=233
       hi CursorLine               ctermbg=234   cterm=none
@@ -227,7 +228,8 @@ if &t_Co > 255
    hi Comment         ctermfg=59
    hi CursorColumn                ctermbg=236
    hi ColorColumn                 ctermbg=236
-   hi LineNr          ctermfg=250 ctermbg=236
+   " change linenumber bg color to black 
+   hi LineNr          ctermfg=250 ctermbg=black
    hi NonText         ctermfg=59
 
    hi SpecialKey      ctermfg=59

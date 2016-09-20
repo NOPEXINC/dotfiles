@@ -135,12 +135,12 @@ nmap <Leader>gv :Gvdiff<CR>
 nmap <Leader>g :Goyo 100%+5%x100%+5%<CR>
 nmap <Leader>lm :Limelight<CR>
 
-"Just press , + ggd to disable gitgutter and gge to enable
+"Just press , + gd to disable gitgutter and ge to enable
 nmap <Leader>gd :GitGutterDisable<CR>
 nmap <Leader>ge :GitGutterEnable<CR>
 nmap <Leader>r <C-r>
 
-"Just press , + l to open nerdtree
+"Just press , + l to  nerdtree
 nmap <Leader>l :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_max_signs = 2048
 
@@ -182,7 +182,7 @@ set smartindent
 
 " The ' key just takes back to the mark's line, the `(backtick)
 " key takes you the exact position of the mark and i rarely
-" use the '(signle quote) so i remaped the backtick(`) to the 
+" use the '(signle quote) so i remap the backtick(`) to the 
 " signle quote key
 nnoremap ' `
 nnoremap ` '
@@ -217,7 +217,7 @@ set foldlevel=1
 
 " Set no max file limit
 let g:ctrlp_max_files = 0
-" Search from current directory instead of project root
+" Search with ctrl+p from current directory instead of project root
 let g:ctrlp_working_path_mode = 0
 
 "Just ,p instead of ctrl + p
@@ -238,7 +238,7 @@ imap <Leader>c <c-y>,
 vmap <Leader>w <c-y>,
 
 "-----------------------------------------------------------------"
-"Insert a hash rocket with <c-l>
+"Insert a hash rocket with <c-l> saves lots of time when writing ruby
 "-----------------------------------------------------------------"
 imap <c-l> <space>=><space>
 
@@ -408,6 +408,7 @@ augroup BWCCreateDir
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
+" use powerline fonts for beautiful status lines 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='onedark'
 
@@ -445,14 +446,15 @@ let ruby_operators = 1
 let g:rails_statusline=0 
 
 "-----------------------------------------------------------------"
-" Make ctrl + p load 100% times faster, just tell it to ignore git files
+" Make ctrl + p load 100% times faster, just tell it to ignore 
+" git files, node_modules and bower_components
 "-----------------------------------------------------------------"
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|bower_compnents\|DS_Store\|git'
 
 "-----------------------------------------------------------------"
-"Exchange settings
+"Vim Exchange settings
 "-----------------------------------------------------------------"
 nmap cx <Plug>(Exchange)
 vmap cx <Plug>(Exchange)
@@ -528,7 +530,7 @@ au FileType py set autoindent
 au FileType py set smartindent
 " au FileType py set textwidth=79 " PEP-8 Friendly
 
-" No ARROW KEYS COME ON
+" No Arrow keys come on man!
 map <Left>  :echo "no!"<cr>
 map <Right> :echo "no!"<cr>
 map <Up>    :echo "no!"<cr>
